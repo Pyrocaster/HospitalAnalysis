@@ -50,6 +50,26 @@ isOutcomeValid <- function(inputOutcome){
 }
 
 
+
+#Get the column number for 30 day Mortality Rate based on outcome
+
+get30DayMRColumnNumber <- function(outcome){
+	
+	if(isOutcomeValid(outcome)){
+		vo <- c("heart attack", "heart failure", "pneumonia")
+		#Column numbers hard coded based on outcome-data.csv	
+		mrCol <- c(11, 17, 23)
+		df <- data.frame(vo, mrCol)
+		df$mrCol[vo == outcome]
+	}
+	else{
+		errmsg <- "invalid outcome in Utilities.R get30DayMRColumnNumber"
+		stop(errmsg)
+	}
+}
+
+
+
 #clean workspace
 clearObjects <- function(){
 	rm(best)
@@ -57,4 +77,5 @@ clearObjects <- function(){
 	rm(readOutcomeData)
 	rm(isOutcomeValid)
 	rm(isStateValid)
+	rm(get30DayMRColumnNumber)
 }
