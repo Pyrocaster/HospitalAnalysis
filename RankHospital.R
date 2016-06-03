@@ -1,12 +1,11 @@
-#Function that returns a character vector of hospital with the 'rank' lowest 30 day mortality rate for the input outcome (heart attack, heart failure, pneumonia) - ties are resolved using alphabetical order of Hospital.Name; Returns the #1 ranked hospital by default
+# Function that returns a character vector of hospital with the 'rank' lowest 30 day mortality rate for the input outcome (heart attack, heart failure, pneumonia).
+## Ties are resolved using alphabetical order of Hospital.Name; Returns the #1 ranked hospital by default
 rankHospital <- function(state, outcome, num = "best"){
-	
 	##Initialize utilities
-	if(!exists("readOutcomeData", mode = "function") || !	exists("isStateValid", mode = "function") || 		exists("isOutcomeValid", mode = "function")  ){
+	if(!exists("readOutcomeData", mode = "function") || !exists("isStateValid", mode = "function") || !exists("isOutcomeValid", mode = "function")){
 		source("Utilities.R")
 	}
 
-	
 	##internal function to parse the input 'num' into correct rank
 	getRank <- function(inputNum, df){
 		answer <- -1
@@ -27,7 +26,6 @@ rankHospital <- function(state, outcome, num = "best"){
 		answer	
 	}
 
-		
 	##read outcome data
 	o <- readOutcomeData();
 
@@ -42,7 +40,6 @@ rankHospital <- function(state, outcome, num = "best"){
 		stop(errmsg)	
 	}
 
-		
 	##Get the relevant column
 	mrCol <- get30DayMRColumnNumber(outcome)
 
