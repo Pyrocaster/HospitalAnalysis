@@ -1,13 +1,11 @@
-#Function that returns the best hospital in a state for a given outcome (heart attack, heart failure, pneumonia) - ties are resolved using alphabetical order of Hospital.Name
+## Function that returns the best hospital in a state for a given outcome (heart attack, heart failure, pneumonia) - 
+##t Tes are resolved using alphabetical order of Hospital.Name
 best <- function(state, outcome){
-	
 	##Initialize utilities
-	if(!exists("readOutcomeData", mode = "function") || !	exists("isStateValid", mode = "function") || 		exists("isOutcomeValid", mode = "function")  ){
+	if(!exists("readOutcomeData", mode = "function") || !exists("isStateValid", mode = "function") || !exists("isOutcomeValid", mode = "function")  ){
 		source("Utilities.R")
 	}
-
-
-
+	## Internal function that computes hospital with lowest heart attack rate in a given state
 	bestHeartAttackRateHospital <- function(inputState){
 		##get cols with Heart Attack
 		haCols <- grep("Heart.Attack", colnames(o))
@@ -28,8 +26,7 @@ best <- function(state, outcome){
 		min(bestHaHospitals[,1])
 	}
 
-
-	
+	## Internal function that returns hospital with lowest heart failure mortality rate for an input state	
 	bestHeartFailureRateHospital <- function(inputState){
 		##get cols with Heart Failure
 		hfCols <- grep("Heart.Failure", colnames(o))
@@ -50,8 +47,7 @@ best <- function(state, outcome){
 		min(bestHf)
 	}	
 
-
-
+	## Internal function that returns hospital with lowest Pneumonia mortality rate for an input state
 	bestPneumoniaRateHospital <- function(inputState){
 		##get cols with pneumonia; 2-> hospital name, 7-> state, 23->pneumonia mortality rate
 		pCols <- c(2,7,23)
@@ -70,8 +66,6 @@ best <- function(state, outcome){
 
 	}
 
-	
-
 	##read outcome data
 	o <- readOutcomeData();
 
@@ -81,12 +75,10 @@ best <- function(state, outcome){
 		stop(errmsg)	
 	}
 	if(!isOutcomeValid(outcome)){
-		
 		errmsg <- "invalid outcome"
 		stop(errmsg)	
 	}
-	
-	
+
 	if(outcome == "heart attack"){
 		answer <- bestHeartAttackRateHospital(state)
 	} 
