@@ -2,7 +2,7 @@
 ##t Tes are resolved using alphabetical order of Hospital.Name
 best <- function(state, outcome){
 	##Initialize utilities
-	if(!exists("readOutcomeData", mode = "function") || !	exists("isStateValid", mode = "function") || 		exists("isOutcomeValid", mode = "function")  ){
+	if(!exists("readOutcomeData", mode = "function") || !exists("isStateValid", mode = "function") || !exists("isOutcomeValid", mode = "function")  ){
 		source("Utilities.R")
 	}
 	## Internal function that computes hospital with lowest heart attack rate in a given state
